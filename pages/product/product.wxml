@@ -1,0 +1,5 @@
+<view class='container'>
+  <view class=''>
+    <image src='{{productInfo.image.url}}'></image>
+  </view>
+</view>

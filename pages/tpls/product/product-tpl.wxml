@@ -1,0 +1,13 @@
+<template name="products">
+  <view class='products-box'>
+    <block wx:for="{{productInfo}}" wx:key="productInfo">
+      <view class='products-item'>
+        <image class='products-image' src='{{item.image.url}}' data-id='{{item.id}}' bindtap='onProductItemTap'></image>
+        <view class='products-text'>
+          <text>{{item.name}}</text>
+          <text>{{item.price}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</template>

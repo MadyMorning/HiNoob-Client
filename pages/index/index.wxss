@@ -1,21 +1,50 @@
 /**index.wxss**/
-.userinfo {
+@import "../tpls/base.wxss";
+@import "../tpls/product/product-tpl.wxss";
+
+.banner {
+  height: 400rpx;
+  width: 100%;
+}
+
+.banner swiper-item {
+  height: 100%;
+  width: 100%;
+}
+
+.banner swiper-item image {
+  height: 100%;
+  width: 100%;
+}
+
+.index-main-header {
   display: flex;
-  flex-direction: column;
+  height: 60rpx;
+  color: #ab956d;
+  background-color: #fff;
+  font-size: 32rpx;
   align-items: center;
+  justify-content: center;
+  margin: 20rpx 0;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.index-theme-box {
+  overflow: hidden;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.theme-img {
+  display: flex;
+  height: 375rpx;
+  width: 50%;
+  border-bottom: 4rpx solid #fff;
+  float: left;
+  box-sizing: border-box;
 }
 
-.usermotto {
-  margin-top: 200px;
+.theme-img:first-child {
+  border-right: 4rpx solid #fff;
+}
+
+.theme-img.big {
+  width: 100%;
 }

@@ -1,14 +1,34 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<import src="../tpls/product/product-tpl.wxml" />
+<view class='container'>
+  <!-- 首页轮播图 -->
+  <view>
+    <swiper class='banner' indicator-dots='true' autoplay='true' circular='true'>
+      <swiper-item wx:for="{{bannerInfo}}" wx:key="bannerInfo">
+        <image mode='aspectFill' src='{{item.image.url}}' data-id="{{item.key_word}}" bindtap='onProductItemTap'></image>
+      </swiper-item>
+    </swiper>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-    <text class="user-motto">{{motto}}</text>
+
+  <!-- 首页专题 -->
+  <view class='index-theme'>
+    <view class='index-main-header'>精选主题</view>
+    <view class='index-theme-box'>
+      <block wx:for="{{themeInfo}}" wx:key="themeInfo">
+        <block wx:if="{{index == 2}}">
+          <image mode='aspectFill' src='{{item.topic_img.url}}' class='theme-img big' data-id='{{item.id}}' data-description='{{item.description}}' bindtap='onThemeItemTap'></image>
+        </block>
+
+        <block wx:else>
+          <image mode='aspectFill' src='{{item.topic_img.url}}' class='theme-img' data-id='{{item.id}}' data-description='{{item.description}}' bindtap='onThemeItemTap'></image>
+        </block>
+      </block>
+    </view>
+  </view>
+
+  <!-- 首页最近新品 -->
+  <view class='index-product'>
+    <view class='index-main-header'>最近新品</view>
+    <template is="products" data="{{productInfo:recentInfo}}"></template>
   </view>
 </view>
