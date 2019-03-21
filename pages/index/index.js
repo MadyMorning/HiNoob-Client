@@ -6,9 +6,9 @@ let indexmodel = new IndexModel()
 
 Page({
   data: {
-    // bannerInfo: '',
-    // themeInfo : '',
-    // recentInfo: ''
+    bannerInfo: '',
+    themeInfo : '',
+    recentInfo: ''
   },
 
   onLoad: function () {
@@ -24,7 +24,6 @@ Page({
      */
     // let url = 'v1/banner/1'
     indexmodel.getData('v1/banner/1', (res)=>{
-      // console.log(res)
       this.setData({
         bannerInfo: res.banner_item
       })

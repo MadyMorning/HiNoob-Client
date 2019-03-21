@@ -6,7 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // productInfo: ''
+    productInfo: '',
+    counts:[1, 2, 3, 5],
+    productCounts: 1,
+    main_nav_click:''
   },
 
   /**
@@ -22,6 +25,19 @@ Page({
       this.setData({
         productInfo: res
       })
+    })
+  },
+
+  getOptionVal(event){
+    this.setData({
+      productCounts: this.data.counts[event.detail.value]
+    })
+  },
+
+  onTabsItem(event) {
+    let index = productModel.getElementValue(event, 'index')
+    this.setData({
+      main_nav_click: index
     })
   },
 })
