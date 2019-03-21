@@ -1,18 +1,48 @@
-// pages/category/category.js
+import { CategoryModel } from './categoryModel.js'
+let categorymodel = new CategoryModel()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    categoryInfo: '',
+    // categoryID: '',
+    categoryIndex: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this._loadData();
+  },
 
+  /**
+   * 获取分类数据
+   */
+  _loadData() {
+    categorymodel.getData('v1/category', (res) => {
+      console.log(res);
+      this.setData({
+        categoryInfo:res
+      })
+    })
+  },
+
+  /**
+   * 点击分类TAB
+   *
+   * @param   {object}  event  点击元素获取到的event
+   *
+   * @return  {[type]}         [return description]
+   */
+  onCategoryTab(event) {
+    let id = categorymodel.getElementValue(event, 'id')
+    let index = categorymodel.getElementValue(event, 'index')
+    this.setData({
+      categoryIndex: index
+    })
   },
 
   /**

@@ -1,1 +1,32 @@
-/* pages/category/category.wxss */
+.sidebar{
+  width: 150rpx;
+  text-align: center;
+  border-right: 2rpx solid #999;
+  float: left;
+}
+
+.sidebar .sidebar-name{
+  display: block;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.sidebar .selected{
+  border-left: 4rpx solid #ab956d;
+  color: #ab956d;
+}
+
+.main{
+  width: 590rpx;
+  float: right;
+}
+
+.main .main-item{
+  padding: 35rpx;
+  width: 520rpx;
+}
+
+.main-item .main-head-img{
+  height: 250rpx;
+  width: 100%;
+}

@@ -1,2 +1,15 @@
-<!--pages/category/category.wxml-->
-<text>pages/category/category.wxml</text>
+<view class="container">
+  <view class="sidebar">
+    <block wx:for="{{ categoryInfo }}" wx:key="categoryInfo">
+      <text class="sidebar-name {{ categoryIndex == index ? 'selected' : '' }}" bindtap="onCategoryTab" data-id="{{ item.id }}" data-index="{{ index }}">{{ item.name }}</text>
+    </block>
+  </view>
+
+  <view class="main">
+    <block wx:for="{{ categoryInfo }}" wx:key="categoryInfo">
+      <view class="main-item" wx:if="{{ categoryIndex == index }}">
+        <image class="main-head-img" src="{{ item.topic_img.url }}" />
+      </view>
+    </block>
+  </view>
+</view>
