@@ -1,2 +1,25 @@
-<!--pages/category/category.wxml-->
-<text>pages/category/category.wxml</text>
+<view class="container">
+  <view class="category">
+    <view class="sidebar">
+      <block wx:for="{{ categoryInfo }}" wx:key="categoryInfo">
+        <text class="sidebar-name {{ categoryIndex == index ? 'selected' : '' }}" bindtap="onCategoryTab" data-id="{{ item.id }}" data-index="{{ index }}">{{ item.name }}</text>
+      </block>
+    </view>
+  
+    <view class="main">
+      <block wx:for="{{ categoryInfo }}" wx:key="categoryInfo">
+        <view class="main-item" wx:if="{{ categoryIndex == index }}">
+          <image class="main-head-img" src="{{ item.topic_img.url }}" />
+          <text class="main-title">{{ item.name }}</text>
+  
+          <block wx:for="{{categoryByProducts}}" wx:key="categoryByProducts">
+            <view class="main-products" bind:tap="onProductItemTap" data-id="{{ item.id }}">
+              <image class="main-products-img" src="{{ item.image.url }}" />  
+              <text class="main-products-text">{{ item.name }}</text>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view> 
+  </view>
+</view>

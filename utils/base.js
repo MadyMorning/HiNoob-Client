@@ -32,11 +32,11 @@ class Base{
 
   /**
    * 获取元素上绑定的值
-   * @param event 点击元素获取到的数据
+   * @param event 点击元素获取到的event
    * @param key   要获取的值
    */
   getElementValue(event, key){
-    return event.target.dataset[key]
+    return event.currentTarget.dataset[key]
   }
 }
 

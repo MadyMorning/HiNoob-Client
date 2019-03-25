@@ -42,9 +42,9 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "专题",
-					"pathName": "pages/theme/theme",
-					"query": "id=2",
+					"name": "购物车",
+					"pathName": "pages/cart/cart",
+					"query": "",
 					"scene": null
 				}
 			]

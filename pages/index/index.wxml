@@ -5,7 +5,7 @@
   <view>
     <swiper class='banner' indicator-dots='true' autoplay='true' circular='true'>
       <swiper-item wx:for="{{bannerInfo}}" wx:key="bannerInfo">
-        <image mode='aspectFill' src='{{item.image.url}}' data-id="{{item.key_word}}" bindtap='onProductItemTap'></image>
+        <image mode='aspectFill' src='{{item.image.url}}' data-id="{{item.key_word}}" bind:tap='onProductItemTap'></image>
       </swiper-item>
     </swiper>
   </view>
@@ -16,11 +16,11 @@
     <view class='index-theme-box'>
       <block wx:for="{{themeInfo}}" wx:key="themeInfo">
         <block wx:if="{{index == 2}}">
-          <image mode='aspectFill' src='{{item.topic_img.url}}' class='theme-img big' data-id='{{item.id}}' data-description='{{item.description}}' bindtap='onThemeItemTap'></image>
+          <image mode='aspectFill' src='{{item.topic_img.url}}' class='theme-img big' data-id='{{item.id}}' data-description='{{item.description}}' bind:tap='onThemeItemTap'></image>
         </block>
 
         <block wx:else>
-          <image mode='aspectFill' src='{{item.topic_img.url}}' class='theme-img' data-id='{{item.id}}' data-description='{{item.description}}' bindtap='onThemeItemTap'></image>
+          <image mode='aspectFill' src='{{item.topic_img.url}}' class='theme-img' data-id='{{item.id}}' data-description='{{item.description}}' bind:tap='onThemeItemTap'></image>
         </block>
       </block>
     </view>

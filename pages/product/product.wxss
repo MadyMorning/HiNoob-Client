@@ -1,0 +1,142 @@
+@import "../tpls/base.wxss"; 
+
+.head{
+ text-align: center;
+ overflow: hidden;
+ position: relative;
+}
+
+.head::after{
+  width: 100%;
+  height: 20rpx;
+  background-color:red;
+}
+
+.head .head-cart-icon{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 35rpx;
+  right: 35rpx;
+}
+
+.head .head-cart-counts{
+  background: #AB956D;
+  border-radius: 90rpx;
+  display: inline-block;
+  width: 35rpx;
+  height: 35rpx;
+  color: #fff;
+  font-size: 25rpx;
+  position: absolute;
+  top: 25rpx;
+  right: 70rpx;
+}
+
+.head .head-image{
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.head .head-option{
+  width: 650rpx;
+  height: 80rpx;
+  background: #AB956D;
+  border-radius: 40rpx;
+  margin: 0 auto;
+}
+
+.head-option text{
+  font-size: 25rpx;
+  color: white;
+  margin: 25rpx 0 0 40rpx;
+}
+
+.head-option image{
+  width: 35rpx;
+  height: 35rpx;
+  margin: 25rpx 0 0 40rpx;
+}
+
+.head-option-counts {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.head-option-cart{
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+
+.head-option-counts text {
+  float: left;
+}
+
+.head-option-counts image{
+  float: left;
+}
+
+.head-option-cart image{
+  float: left;
+}
+
+.head-option-cart text {
+  float: left;
+  margin-left: 90rpx;
+}
+
+.head .head-simpleInfo{
+  width: 100%;
+  height: 200rpx;
+  margin-top: 50rpx;
+}
+
+.head-simpleInfo text{
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.head-simpleInfo .small {
+  font-size: 25rpx;
+}
+
+.main .main-nav{
+  display: inline-block;
+  width: 250rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 30rpx;
+  margin-bottom: 10rpx;
+}
+
+.main .main-imgs{
+  width: 100%;
+  height: 400rpx;
+}
+
+.main .selected {
+  color: rgba(171, 149, 109, .8);
+  border-bottom: 2px solid rgba(171, 149, 109, .8);
+}
+
+.main-params .property_name {
+  width: 200rpx;
+  color: #808080;
+  text-align: center;
+  font-size: 30rpx;
+  display: inline-block;
+}
+
+.main-params .property_detail {
+  flex: 1;
+  color: #333;
+  font-size: 30rpx;
+  padding-right: 40rpx;
+}
+
+.main .main-protection{
+  text-align: center;
+}

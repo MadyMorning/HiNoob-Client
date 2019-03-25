@@ -1,0 +1,76 @@
+.cart-item {
+  width: 100%;
+  height: 200rpx;
+  border-bottom: 2rpx solid #ddd;
+  display: flex;
+  flex-direction: row;
+}
+
+.cart-item .cart-item-left {
+  flex: 2;
+  height: 100%;
+  text-align: center;
+  display: flex;
+}
+
+.cart-item-left .cart-status {
+  flex: 1;
+  width: 45rpx;
+  height: 50rpx;
+  margin: auto 10rpx;
+}
+
+.cart-item-left .cart-image-radio {
+  width: 45rpx;
+  height: 50rpx;
+  /* margin: auto 20rpx; */
+}
+
+.cart-item-left .cart-image-product {
+  width: 190rpx;
+  height: 160rpx;
+  flex: 4;
+  background: #f3f3f5;
+  margin: auto 0;
+}
+
+.cart-item .cart-item-right {
+  height: 100%;
+  flex: 4;
+  font-size: 30rpx;
+}
+
+.cart-item-right .cart-item-right-top {
+  position: relative;
+  width: 100%;
+  height: 50%;
+}
+
+.cart-item-right-top .cart-name,
+.cart-item-right-top .cart-price,
+.cart-item-right-buttom .cart-counts-option,
+.cart-item-right-buttom .cart-delete {
+  position: absolute;
+  margin: 20rpx 10rpx;
+}
+
+.cart-item-right-top .cart-name,
+.cart-item-right-buttom .cart-counts-option {
+  left: 20rpx;
+}
+
+.cart-item-right-top .cart-price,
+.cart-item-right-buttom .cart-delete {
+  right: 20rpx;
+}
+
+.cart-item-right-buttom {
+  font-size: 50rpx;
+  position: relative;
+}
+
+.cart-item-right-buttom .cart-counts {
+  margin: 0 60rpx;
+  font-size: 35rpx;
+}
+

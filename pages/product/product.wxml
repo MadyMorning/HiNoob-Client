@@ -1,5 +1,54 @@
 <view class='container'>
-  <view class=''>
-    <image src='{{productInfo.image.url}}'></image>
+  <view class='head'>
+    <text class="head-cart-counts" wx:if="{{ quantity > 0 }}">{{ quantity }}</text>
+    <image class='head-cart-icon' src='../../imgs/icon/cart@top.png' bind:tap="onCart"></image>
+    <image class='head-image' src='{{productInfo.image.url}}'></image>
+    <view class='head-option'>
+      <view class='head-option-counts'>
+        <picker range='{{ counts }}' bindchange='getOptionVal' class="{{ productInfo.stock == 0 ? disabled : '' }}">
+          <view>
+            <text>数量</text>
+            <text>{{ productCounts }}</text>
+            <image src='../../imgs/icon/arrow@down.png'></image>
+          </view>
+        </picker>
+      </view>
+      <!-- <text class='head-option-separated'>|</text> -->
+      <view class="head-option-cart {{ productInfo.stock == 0 ? disabled : '' }}" bind:tap="OnAddToCart">
+        <text>加入购物车</text>
+        <image src='../../imgs/icon/cart.png'></image>
+      </view>
+    </view>
+    <view class="head-simpleInfo">
+      <text class="small" wx:if="{{ productInfo.stock > 0 }}">有货</text>
+      <text class="small" wx:else>无货</text>
+      <text>{{ productInfo.name }}</text>
+      <text>¥{{ productInfo.price }}</text>
+    </view>
+  </view>
+
+  <view class="main">
+    <block wx:for="{{ ['商品详情', '产品参数', '售后保障'] }}" wx:key="">
+      <view class="main-nav {{  main_nav_click == index ? 'selected' : '' }}" data-index='{{ index }}' bindtap="onTabsItem">{{ item }}</view>
+    </block>
+
+    <view wx:if="{{ main_nav_click == 0 }}">
+      <block wx:for="{{  productInfo.product_image }}" wx:key="product_image">
+        <image class="main-imgs" src="{{ item.image.url }}" lazy-load="true"/>
+      </block>
+    </view>
+
+    <view wx:elif="{{ main_nav_click == 1 }}" class="main-params">
+      <block wx:for="{{ productInfo.product_property }}" wx:key="product_property">
+        <view>
+          <text class="property_name">{{ item.name }}</text>
+          <text class="property_detail">{{ item.detail }}</text>
+        </view>
+      </block>
+    </view>
+
+    <view wx:else="{{ main_nav_click == 2 }}" class="main-protection">
+      <text>七天无理由退货</text>
+    </view>
   </view>
 </view>
