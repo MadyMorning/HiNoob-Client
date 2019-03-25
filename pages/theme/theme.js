@@ -19,6 +19,7 @@ Page({
     this.data.description = options.description
   },
 
+
   onReady: function (){
     wx.setNavigationBarTitle({
       title: this.data.description,
@@ -32,5 +33,17 @@ Page({
         themeInfo:res
       })
     })
-  }
+  },
+
+  /**
+   * 点击商品
+   * 
+   * @param {object} event 点击商品获取到的event
+   */
+  onProductItemTap(event) {
+    let id = thememodel.getElementValue(event, 'id')
+    wx.navigateTo({
+      url: '../product/product?id=' + id
+    })
+  },
 })

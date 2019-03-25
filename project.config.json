@@ -42,8 +42,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "商品",
-					"pathName": "pages/category/category",
+					"name": "购物车",
+					"pathName": "pages/cart/cart",
 					"query": "",
 					"scene": null
 				}

@@ -1,0 +1,32 @@
+<template name="cart">
+  <block wx:for="{{ cartData }}" wx:key="cartData">
+    <view class="cart-item">
+      <view class="cart-item-left">
+        <!-- <radio-group class="cart-radio-group">
+          <radio class="cart-radio" value="" checked="{{ item.status }}" color="#ff0000" />
+        </radio-group> -->
+        <view class="cart-status" data-index="{{ index }}" bind:tap="onProductStuats">
+          <image wx:if="{{ item.status }}" class="cart-image-radio" src="/imgs/icon/circle@selected.png" mode="aspectFill"/>
+          <image wx:else class="cart-image-radio" src="/imgs/icon/circle@noselected.png" mode="aspectFill"/>
+        </view>
+
+        <image class="cart-image-product" src="{{ item.image.url }}" mode="aspectFill" lazy-load="true" />
+      </view>
+
+      <view class="cart-item-right">
+        <view class="cart-item-right-top">
+          <text class="cart-name">{{ item.name }}</text>
+          <text class="cart-price">¥{{ item.price }}</text>
+        </view>
+        <view class="cart-item-right-buttom">
+          <view class="cart-counts-option">
+            <text data-index="{{ index }}" data-change="reduce"  bind:tap="cartChangeCounts">-</text>
+            <text class="cart-counts">{{ item.counts }}</text>
+            <text data-index="{{ index }}" data-change="add" bind:tap="cartChangeCounts">+</text>
+          </view>
+          <text class="cart-delete" data-index="{{ index }}" bind:tap="cartDelete">×</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</template>

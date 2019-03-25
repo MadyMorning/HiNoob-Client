@@ -1,7 +1,5 @@
-//index.js
 //获取应用实例
 import {IndexModel} from 'indexModel.js'
-const app = getApp()
 let indexmodel = new IndexModel()
 
 Page({
@@ -11,6 +9,9 @@ Page({
     recentInfo: ''
   },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function () {
     this._loadData()
   },
@@ -22,8 +23,8 @@ Page({
     /**
      * 获取Banner
      */
-    // let url = 'v1/banner/1'
-    indexmodel.getData('v1/banner/1', (res)=>{
+    indexmodel.getData('v1/banner/1', (res) => {
+      // console.log(res)
       this.setData({
         bannerInfo: res.banner_item
       })
@@ -52,6 +53,8 @@ Page({
 
   /**
    * 点击商品
+   * 
+   * @param {object} event 点击商品获取到的event
    */
   onProductItemTap(event){
     let id = indexmodel.getElementValue(event, 'id')
@@ -64,7 +67,6 @@ Page({
    * 点击专题
    */
   onThemeItemTap(event) {
-
     let id = indexmodel.getElementValue(event, 'id')
     let description = indexmodel.getElementValue(event, 'description')
     wx.navigateTo({

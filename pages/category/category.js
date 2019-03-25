@@ -7,8 +7,8 @@ Page({
    */
   data: {
     categoryInfo: '',
-    // categoryID: '',
-    categoryIndex: 0
+    categoryIndex: 0,
+    categoryByProducts:''
   },
 
   /**
@@ -23,10 +23,16 @@ Page({
    */
   _loadData() {
     categorymodel.getData('v1/category', (res) => {
-      console.log(res);
       this.setData({
-        categoryInfo:res
+        categoryInfo: res,
       })
+      
+      categorymodel.getData('v1/category/' + res[0].id, (res) => {
+        this.setData({
+          categoryByProducts: res
+        })
+      })
+
     })
   },
 
@@ -34,63 +40,31 @@ Page({
    * 点击分类TAB
    *
    * @param   {object}  event  点击元素获取到的event
-   *
-   * @return  {[type]}         [return description]
    */
   onCategoryTab(event) {
     let id = categorymodel.getElementValue(event, 'id')
     let index = categorymodel.getElementValue(event, 'index')
+
+    categorymodel.getData('v1/category/' + id, (res) => {
+      this.setData({
+        categoryByProducts: res
+      })
+    })
+
     this.setData({
       categoryIndex: index
     })
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 点击商品
+   * 
+   * @param {object} event 点击商品获取到的event
    */
-  onReady: function () {
-
+  onProductItemTap(event) {
+    let id = categorymodel.getElementValue(event, 'id')
+    wx.navigateTo({
+      url: '../product/product?id=' + id
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

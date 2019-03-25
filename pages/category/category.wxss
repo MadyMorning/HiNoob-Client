@@ -1,32 +1,75 @@
-.sidebar{
+.category {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
   width: 150rpx;
   text-align: center;
-  border-right: 2rpx solid #999;
+  border-right: 2rpx solid #979797;
   float: left;
 }
 
-.sidebar .sidebar-name{
+.sidebar .sidebar-name {
   display: block;
   height: 100rpx;
   line-height: 100rpx;
 }
 
-.sidebar .selected{
+.sidebar .selected {
   border-left: 4rpx solid #ab956d;
   color: #ab956d;
 }
 
-.main{
+.main {
   width: 590rpx;
   float: right;
+  text-align: center;
 }
 
-.main .main-item{
+.main .main-item {
   padding: 35rpx;
   width: 520rpx;
 }
 
-.main-item .main-head-img{
+.main-item .main-head-img {
   height: 250rpx;
   width: 100%;
+}
+
+.main .main-title {
+  color: #ab956d;
+  font-size: 30rpx;
+  margin: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main .main-title::before,
+.main .main-title::after {
+  content: '';
+  display: inline-block;
+  width: 100rpx;
+  height: 2rpx;
+  margin: 0 20rpx;
+  background-color: #979797;
+}
+
+.main .main-products {
+  float: left;
+  width: 170rpx;
+  height: 165rpx;
+  margin-bottom: 100rpx;
+}
+
+.main-products .main-products-img {
+  width: 100%;
+  height: 100%;
+}
+
+.main-products .main-products-text {
+  font-size: 27rpx;
+  color: #979797;
 }

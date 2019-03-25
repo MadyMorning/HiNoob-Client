@@ -1,6 +1,7 @@
 <view class='container'>
   <view class='head'>
-    <image class='head-cart-icon' src='../../imgs/icon/cart@top.png'></image>
+    <text class="head-cart-counts" wx:if="{{ quantity > 0 }}">{{ quantity }}</text>
+    <image class='head-cart-icon' src='../../imgs/icon/cart@top.png' bind:tap="onCart"></image>
     <image class='head-image' src='{{productInfo.image.url}}'></image>
     <view class='head-option'>
       <view class='head-option-counts'>
@@ -13,7 +14,7 @@
         </picker>
       </view>
       <!-- <text class='head-option-separated'>|</text> -->
-      <view class="head-option-cart {{ productInfo.stock == 0 ? disabled : '' }}">
+      <view class="head-option-cart {{ productInfo.stock == 0 ? disabled : '' }}" bind:tap="OnAddToCart">
         <text>加入购物车</text>
         <image src='../../imgs/icon/cart.png'></image>
       </view>
