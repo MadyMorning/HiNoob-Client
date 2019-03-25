@@ -57,3 +57,12 @@
   height: 35rpx;
   float: right;
 }
+
+.no-data {
+  display: flex;
+  height: 200rpx;
+  font-size: 30rpx;
+  color: #ccc;
+  align-items: center;
+  justify-content: center;
+}

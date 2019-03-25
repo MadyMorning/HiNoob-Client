@@ -21,8 +21,6 @@ Page({
   onLoad: function (options) {
     this._loadData(options.id)
     this.getCartCounts();
-    console.log(this.data.quantity);
-    
   },
 
   /**
@@ -32,7 +30,6 @@ Page({
    */
   _loadData(id){
     productModel.getData('v1/product/' + id, (res)=>{
-      // console.log(res)
       this.setData({
         productInfo: res
       })
@@ -86,7 +83,8 @@ Page({
    * 获取购物车总数
    */
   getCartCounts() {
-    let quantity = cartModel.getCartCounts()    
+    let cartData = cartModel.getCartDataFromLocal()
+    let quantity = (cartModel.getCountsAndPrice(cartData)).counts
     this.setData({
       quantity
     })
