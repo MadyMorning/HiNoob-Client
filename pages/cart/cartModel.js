@@ -26,7 +26,6 @@ class CartModel extends Base{
     if (!isProductInfo) {
       item.counts = counts  //数量
       item.status = true    //是否选中
-      console.log(item);
       cartData.push(item)
     } else {  //若购物车中存在该条数据，则将数量增加
       cartData[isProductInfo.index].counts += counts
@@ -37,18 +36,29 @@ class CartModel extends Base{
 
   /**
    * 从本地缓存中获取购物车数据
+   * @param {Boolean}   是否获取选中商品信息
    *
    * @return  {object}  返回购物车数据
    */
-  getCartDataFromLocal() {
+  getCartDataFromLocal(flag = false) {
     let cartData = wx.getStorageSync(this._storagekey)
+    if (flag) {
+      let selectedData = []
+      for (const value of cartData) {
+        if (value.status) {
+          selectedData.push(value)
+        }
+      }
+
+      cartData = selectedData
+    }
     return cartData
   }
 
   /**
    * 判断购物车中是否商品信息
    *
-   * @param   {string}  id    商品ID
+   * @param   {Number}  id    商品ID
    * @param   {object}  item  购物车数据
    *
    * @return  {object}        返回商品信息以及在购物车数据中的下标
@@ -69,54 +79,40 @@ class CartModel extends Base{
   }
 
   /**
-   * 获取购物车数量
-   * 
-   * @param {Boolean} flag 是否获取选中商品数量
-   * 
-   * @returns {Number} 返回商品数量
+   * 获取商品数量和价格
+   *
+   * @param   {Array}  data  购物车商品信息
+   * @param   {Booble}  flag  是否获取选中商品数量和价格
+   *
+   * @return  {object}        返回商品数量和价格
    */
-  getCartCounts(flag = false) {
-    let cartData = this.getCartDataFromLocal() || []
-    let quantity = 0
-    for (const value of cartData) {
+  getCountsAndPrice(data, flag = false) {
+    let countsAndprice = { counts: 0, price: 0 }
+    for (const value of data) {
       if (flag) {
         if (value.status) {
-          quantity += value.counts
+          countsAndprice.counts += value.counts
+          countsAndprice.price += value.counts * parseFloat(value.price) * 100
         }
       } else {
-        quantity += value.counts
+        countsAndprice.counts += value.counts
+        countsAndprice.price += value.counts * parseFloat(value.price) * 100
       }
     }
-
-    return quantity
+    if (countsAndprice.price == 0) {
+    return countsAndprice
+    }
+    countsAndprice.price /= 100
+    return countsAndprice
   }
 
   /**
-   * 获取商品价格
+   * 写入缓存
    *
-   * @returns {Number} 返回商品价格
+   * @param   {Array}  data  要写入缓存的数据
    */
-  getCartPrices() {
-    let cartData = this.getCartDataFromLocal() || []
-    let price = 0
-    for (const value of cartData) {
-      // if (flag) {
-      //   if (value.status) {
-      //     quantity += value.counts
-      //   }
-      // } else {
-      //   quantity += value.counts
-      // }
-
-      if (value.status) {
-        price += value.counts * parseFloat(value.price) * 100
-      }
-    }
-
-    if (price == 0) {
-      return price
-    }
-    return price / 100
+  execStorage(data) {
+    wx.setStorageSync(this._storagekey, data);
   }
 }
 

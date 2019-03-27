@@ -1,22 +1,28 @@
 <import src="../tpls/cart/cart-tpl.wxml" />
 
 <view class="container">
-  <template is="cart" data="{{ cartData }}"></template>
+  <view class="data" wx:if="{{ cartData.length>=1 }}">
+    <template is="cart" data="{{ cartData }}"></template>
 
-  <view class="footer" wx:if="{{ cartData == [] }}">
-    <view class="footer-left">
-      <view class="" bind:tap="onTotalSelected">
-        <image wx:if="{{ totalSelected }}" class="footer-selectAll" src="/imgs/icon/all@selected.png" mode="aspectFill" />
-        <image wx:else class="footer-selectAll" src="/imgs/icon/all.png" mode="aspectFill" />
+    <view class="footer" wx:if="{{ cartData }}">
+      <view class="footer-left">
+        <view class="" bind:tap="onTotalSelected">
+          <image wx:if="{{ totalSelected }}" class="footer-selectAll" src="/imgs/icon/all@selected.png" mode="aspectFill" />
+          <image wx:else class="footer-selectAll" src="/imgs/icon/all.png" mode="aspectFill" />
+        </view>
+        <text class="">全选({{ cartCounts }})</text>
       </view>
-      <text class="">全选({{ cartCounts }})</text>
+      <view class="footer-center">
+        <text class="">下单</text>
+      </view>
+      <view class="footer-right">
+        <text class="">¥{{ cartPrices }}</text>
+        <image class="footer-arrow" src="/imgs/icon/arrow.png" mode="aspectFill" bind:tap="submitOrder"/>
+      </view>
     </view>
-    <view class="footer-center">
-      <text class="">下单</text>
-    </view>
-    <view class="footer-right">
-      <text class="">¥{{ cartPrices }}</text>
-      <image class="footer-arrow" src="/imgs/icon/arrow.png" mode="aspectFill" />
-    </view>
+  </view>
+
+  <view wx:else class="no-data">
+    您还没有添加任何商品
   </view>
 </view>
