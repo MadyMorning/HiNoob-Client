@@ -1,0 +1,136 @@
+.order-head{
+  display: flex;
+  height: 150rpx;
+  font-size: 30rpx;
+  color: #ccc;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 15rpx solid #f3f3f5;
+}
+
+.order-address{
+  width: 100%;
+  height: 100%;
+}
+
+.order-address .order-address-left {
+  width: 80%;
+  float: left;
+  color: black;
+  overflow: hidden;
+  position: absolute;
+}
+
+.order-address-left .name {
+  margin: 20rpx 20rpx 0 20rpx;
+  float: left;
+}
+
+.order-address-left .detail {
+  margin: 20rpx 0 0 20rpx;
+  float: left;
+  color: rgb(160, 158, 158);
+}
+
+.order-address-left .tel {
+  margin: 20rpx 20rpx 0 20rpx;
+  float: right;
+}
+
+.order-address .order-address-right {
+  width: 20%;
+  float: right;
+  height:150rpx;
+  line-height: 150rpx;
+  text-align:right;
+}
+
+
+.order-head image{
+  width: 30rpx;
+  height: 30rpx;
+  position: relative;
+  top: 7rpx;
+  margin-right: 20rpx;
+}
+
+.order-address-right image{
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0;
+}
+
+.order-item {
+  width: 100%;
+  height: 200rpx;
+  border-bottom: 2rpx solid #ddd;
+  display: flex;
+  flex-direction: row;
+}
+
+.order-item .order-item-left {
+  flex: 1;
+  height: 100%;
+  text-align: center;
+  display: flex;
+}
+
+.order-item-left .order-image-product {
+  width: 190rpx;
+  height: 170rpx;
+  flex: 4;
+  background: #f3f3f5;
+  margin: auto 20rpx;
+}
+
+.order-item .order-item-right {
+  height: 150rpx;
+  flex: 3;
+  font-size: 30rpx;
+  margin: 25rpx 0;
+  overflow: hidden;
+}
+
+.order-item-right .order-price {
+  margin-right: 40rpx;
+  float: right;
+}
+
+.order-item-right .order-counts {
+  margin-right: 40rpx;
+  display: block;
+  text-align: right;
+}
+
+.order-footer{
+  position: fixed;
+  bottom: 0;
+  height: 90rpx;
+  width: 100%;
+  font-size: 30rpx;
+}
+
+.order-footer .order-footer-left{
+  width: 70%;
+  height: 90rpx;
+  line-height: 80rpx;
+  color: rgb(143, 8, 8);
+  float: left;
+  border-top: 5rpx solid #f3f3f5;
+  position: relative;
+}
+
+.order-footer-left text{
+  margin-left: 30rpx;
+}
+
+.order-footer .order-footer-right{
+  width: 30%;
+  height: 90rpx;
+  line-height: 80rpx;
+  background: #ab956d;
+  color: aliceblue;
+  float: right;
+  border-top: 5rpx solid #ab956d;
+  text-align: center;
+}
