@@ -17,7 +17,7 @@
       </view>
       <view class="footer-right">
         <text class="">¥{{ cartPrices }}</text>
-        <image class="footer-arrow" src="/imgs/icon/arrow.png" mode="aspectFill" />
+        <image class="footer-arrow" src="/imgs/icon/arrow.png" mode="aspectFill" bind:tap="submitOrder"/>
       </view>
     </view>
   </view>

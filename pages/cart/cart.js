@@ -21,7 +21,7 @@ Page({
   },
 
   /**
-   * 生命周期函数--离开页面
+   * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
     cartModel.execStorage(this.data.cartData)
@@ -110,13 +110,13 @@ Page({
     let change = cartModel.getElementValue(event, 'change')
     if (change == 'reduce' && this.data.cartData[index].counts > 1) {
       this.data.cartData[index].counts -= 1
-      this._updataCart()
     }
 
     if (change == 'add' && this.data.cartData[index].counts > 0) {
       this.data.cartData[index].counts += 1
-      this._updataCart()
     }
+
+    this._updataCart()
   },
 
   /**
@@ -128,5 +128,26 @@ Page({
     let index = cartModel.getElementValue(event, 'index')
     this.data.cartData.splice(index, 1)
     this._updataCart()
+  },
+
+  /**
+   * 跳转到商品详情
+   *
+   * @param   {object}  event  时间对象
+   */
+  productDetail(event) {
+    let id = cartModel.getElementValue(event, 'id')
+    wx.navigateTo({
+      url: '../product/product?id=' + id
+    })
+  },
+  
+  /**
+   * 提交订单
+   */
+  submitOrder() {
+    wx.navigateTo({
+      url: '../order/order?orderPrices=' + this.data.cartPrices
+    })
   }
 })

@@ -36,11 +36,22 @@ class CartModel extends Base{
 
   /**
    * 从本地缓存中获取购物车数据
+   * @param {Boolean}   是否获取选中商品信息
    *
    * @return  {object}  返回购物车数据
    */
-  getCartDataFromLocal() {
+  getCartDataFromLocal(flag = false) {
     let cartData = wx.getStorageSync(this._storagekey)
+    if (flag) {
+      let selectedData = []
+      for (const value of cartData) {
+        if (value.status) {
+          selectedData.push(value)
+        }
+      }
+
+      cartData = selectedData
+    }
     return cartData
   }
 
