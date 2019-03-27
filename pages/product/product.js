@@ -64,6 +64,9 @@ Page({
    *
    */
   OnAddToCart() {
+    // 验证用户是否登录
+    cartModel.checkLogin()
+
     let keys = ['id', 'image', 'name', 'price']
     let productInfo = {};
     for (let key in this.data.productInfo) {
@@ -95,7 +98,14 @@ Page({
    */
   onCart() {
     wx.switchTab({
-      url: '/pages/cart/cart'
+      url: '../cart/cart'
     })
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })
