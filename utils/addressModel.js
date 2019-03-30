@@ -9,7 +9,7 @@ class AddressModel extends Base{
   }
 
   /**
-   * 获取地址详细信息
+   * 组织地址详细信息
    *
    * @param   {object}  addressInfo  地址完整信息
    *
@@ -24,6 +24,12 @@ class AddressModel extends Base{
     return province + city + county + detail
   }
 
+  /**
+   * 添加地址
+   *
+   * @param   {[type]}  data      微信中的地址详细信息
+   * @param   {[type]}  callback  回调函数
+   */
   createAddress(data, callback) {
     let addressInfo = this._setAddressInfo(data)
 
@@ -55,6 +61,28 @@ class AddressModel extends Base{
     }
 
     return addressInfo
+  }
+
+  /**
+   * 从服务器中获取地址信息
+   */
+  getAddressInfoFromServer(callback) {
+    let _this = this
+    let params = {
+      url: 'v1/address',
+      callback: (res) => {
+        let addressInfo = {
+          id: res.id,
+          name: res.name,
+          mobile: res.mobile,
+          detailInfo: _this.getAddressDetailInfo(res)
+        }
+
+        callback && callback(addressInfo)
+      }
+    }
+
+    this.request(params)
   }
 }
 

@@ -107,6 +107,22 @@ class CartModel extends Base{
   }
 
   /**
+   * 从购物车中删除某些商品
+   *
+   * @param   {array}  ids  要删除的商品ID
+   */
+  cartDeletes(ids) {
+    var cartData = this.getCartDataFromLocal();
+    for (let i = 0; i < ids.length; i++) {
+      var hasInfo = this._isProductInfoFromCart(ids[i], cartData);
+      if (hasInfo) {
+        cartData.splice(hasInfo.index, 1); //删除数组某一项
+      }
+    }
+    this.execStorage(cartData);
+  }
+
+  /**
    * 写入缓存
    *
    * @param   {Array}  data  要写入缓存的数据
