@@ -65,7 +65,7 @@ Page({
    */
   OnAddToCart() {
     // 验证用户是否登录
-    cartModel.checkLogin()
+    // cartModel.checkLogin()
 
     let keys = ['id', 'image', 'name', 'price']
     let productInfo = {};
