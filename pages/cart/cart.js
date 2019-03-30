@@ -133,7 +133,7 @@ Page({
   /**
    * 跳转到商品详情
    *
-   * @param   {object}  event  时间对象
+   * @param   {object}  event  事件对象
    */
   productDetail(event) {
     let id = cartModel.getElementValue(event, 'id')
@@ -147,7 +147,7 @@ Page({
    */
   submitOrder() {
     wx.navigateTo({
-      url: '../order/order?orderPrices=' + this.data.cartPrices
+      url: '../order/order?orderPrices=' + this.data.cartPrices + '&from=cart'
     })
   }
 })

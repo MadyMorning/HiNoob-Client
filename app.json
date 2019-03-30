@@ -7,7 +7,7 @@
     "pages/cart/cart",
     "pages/my/my",
     "pages/order/order",
-    "pages/logs/logs"
+    "pages/pay-result/pay-result"
   ],
   "window": {
     "backgroundTextStyle": "light",

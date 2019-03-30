@@ -1,3 +1,5 @@
+@import '../tpls/base.wxss';
+
 .order-head{
   display: flex;
   height: 150rpx;
@@ -19,6 +21,10 @@
   color: black;
   overflow: hidden;
   position: absolute;
+}
+
+.order-address-left.all {
+  width: 100%;
 }
 
 .order-address-left .name {
@@ -92,12 +98,12 @@
 }
 
 .order-item-right .order-price {
-  margin-right: 40rpx;
+  margin-right: 20rpx;
   float: right;
 }
 
 .order-item-right .order-counts {
-  margin-right: 40rpx;
+  margin-right: 20rpx;
   display: block;
   text-align: right;
 }
@@ -133,4 +139,37 @@
   float: right;
   border-top: 5rpx solid #ab956d;
   text-align: center;
+}
+
+.order-basic-info {
+  border-bottom: 1rpx solid #E9E9E9;
+  display: flex;
+  font-size: 30rpx;
+  height: 150rpx;
+}
+
+.order-time-no {
+  flex: 1;
+  margin:auto 0 auto 20rpx;
+}
+
+.order-time-no view:first-child {
+  margin-bottom: 15rpx;
+}
+
+.order-time-no view .key {
+  color: #999999;
+}
+
+.order-time-no view .val {
+  margin-left: 10rpx;
+  color: #333;
+}
+
+.order-status {
+  display: flex;
+  flex-basis: 110rpx;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 20rpx;
 }
