@@ -44,7 +44,7 @@ Page({
 
     this.setData({
       cartData,
-      cartCounts: cartCountsAndPrices.counts,
+      cartCounts: cartCountsAndPrices.count,
       cartPrices: cartCountsAndPrices.price,
       totalSelected
     })
@@ -58,7 +58,7 @@ Page({
 
     this.setData({
       cartData: this.data.cartData,
-      cartCounts: cartCountsAndPrices.counts,
+      cartCounts: cartCountsAndPrices.count,
       cartPrices: cartCountsAndPrices.price
     })
   },
@@ -108,12 +108,12 @@ Page({
   cartChangeCounts(event) {
     let index = cartModel.getElementValue(event, 'index')
     let change = cartModel.getElementValue(event, 'change')
-    if (change == 'reduce' && this.data.cartData[index].counts > 1) {
-      this.data.cartData[index].counts -= 1
+    if (change == 'reduce' && this.data.cartData[index].count > 1) {
+      this.data.cartData[index].count -= 1
     }
 
-    if (change == 'add' && this.data.cartData[index].counts > 0) {
-      this.data.cartData[index].counts += 1
+    if (change == 'add' && this.data.cartData[index].count > 0) {
+      this.data.cartData[index].count += 1
     }
 
     this._updataCart()

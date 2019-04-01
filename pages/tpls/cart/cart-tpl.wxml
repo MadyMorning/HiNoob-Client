@@ -21,7 +21,7 @@
         <view class="cart-item-right-buttom">
           <view class="cart-counts-option">
             <text data-index="{{ index }}" data-change="reduce" catch:tap="cartChangeCounts">-</text>
-            <text class="cart-counts">{{ item.counts }}</text>
+            <text class="cart-counts">{{ item.count }}</text>
             <text data-index="{{ index }}" data-change="add" catch:tap="cartChangeCounts">+</text>
           </view>
           <text class="cart-delete" data-index="{{ index }}" catch:tap="cartDelete">×</text>

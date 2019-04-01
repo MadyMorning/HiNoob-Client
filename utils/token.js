@@ -23,17 +23,16 @@ class Token{
   /**
    * 从服务器获取Token
    */
-  getTokenFromServer() {
+  getTokenFromServer(callback) {
     // let _this = this
     wx.login({
       timeout: 10000,
       success: (result) => {
         let params = {
           url: 'v1/token/user?code=' + result.code,
-          // data: {result.code},
           callback: (res) => {
-            // console.log(res);
-            wx.setStorageSync(this._storagekey, res.token);
+            wx.setStorageSync(this._storagekey, res.token)
+            callback && callback()
           }
         }
 

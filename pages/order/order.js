@@ -14,7 +14,9 @@ Page({
     orderData: [],
     orderPrices: 0,
     addressInfo: '',
-    orderID:''
+    orderID: '',
+    // 旧订单
+    basicInfo: ''
   },
 
   /**
@@ -22,26 +24,20 @@ Page({
    */
   onLoad: function (options) {
     let flag = options.from
-    let orderPrices = options.orderPrices
     /**
      * flag == 'cart', 表示来自‘购物车’，订单未生成
-     * flag == 'cart', 表示来自‘我的’， 订单已生成
+     * flag == 'myOrder', 表示来自‘我的’， 订单已生成
      */
     if (flag == 'cart') {
-      this.setData({
-        orderData: cartModel.getCartDataFromLocal(true),
-        orderPrices,
-        orderStatus: 0
-      })
-      
-      addressModel.getAddressInfoFromServer((res) => {
-        this.setData({
-          addressInfo: res
-        })
-      })
+      let orderPrices = options.orderPrices
+      this._fromCart(orderPrices) 
     }
 
-    
+    if (flag == 'order') {
+      // let orderID = options.id
+      // this._fromOrder(orderID)
+      this.data.orderID = options.id
+    }
   },
 
   /**
@@ -50,27 +46,54 @@ Page({
    */
   onShow: function () {
     if (this.data.orderID) {
-      let _this = this
-      let id = this.data.orderID
-      orderModle.getOrderInfoById(id, (res) => {
-        _this.setData({
-          orderStatus: res.status,
-          productsArr: res.snap_items,
-          account: res.total_price,
-          basicInfo: {
-            orderTime: res.create_time,
-            orderNo: res.order_no
-          },
-        });
-
-        // 快照地址
-        let addressInfo = res.snap_address;
-        addressInfo.detailInfo = addressModel.getAddressDetailInfo(addressInfo)
-        _this.setData({
-          addressInfo
-        })
-      });
+      this._fromOrder(this.data.orderID)
     }
+  },
+
+  /**
+   * 来自购物车
+   *
+   * @param   {string}  orderPrices  订单价格
+   */
+  _fromCart(orderPrices) {
+    this.setData({
+      orderData: cartModel.getCartDataFromLocal(true),
+      orderPrices,
+      orderStatus: 0
+    })
+
+    addressModel.getAddressInfoFromServer((res) => {
+      this.setData({
+        addressInfo: res
+      })
+    })
+  },
+
+  /**
+   * 来自订单
+   *
+   * @param   {string}  id  订单ID
+   */
+  _fromOrder(id) {
+    let _this = this
+    orderModle.getOrderInfoById(id, (res) => {
+      _this.setData({
+        orderStatus: res.status,
+        orderData: res.snap_items,
+        orderPrices: res.total_price,
+        basicInfo: {
+          orderTime: res.create_time,
+          orderNo: res.order_no
+        },
+      });
+
+      // 快照地址
+      let addressInfo = res.snap_address;
+      addressInfo.detailInfo = addressModel.getAddressDetailInfo(addressInfo)
+      _this.setData({
+        addressInfo
+      })
+    })
   },
 
   /**
@@ -112,7 +135,7 @@ Page({
     if (this.data.orderStatus == 0) {
       this._firstTimePay()
     } else {
-      // OrderModle.oneMoresTimePay();
+      this.oneMoresTimePay(this.data.orderID);
     }
   },
 
@@ -127,7 +150,7 @@ Page({
     for (let i = 0; i < procuctInfo.length; i++) {
       orderInfo.push({
         product_id: procuctInfo[i].id,
-        count: procuctInfo[i].counts
+        count: procuctInfo[i].count
       });
     }
     orderModle.createOrder(orderInfo, address_id, (res) => {
@@ -136,7 +159,13 @@ Page({
         _this._execPay(res.orderID)
       }
     })
+  },
 
+  /**
+   * 来自订单
+   */
+  oneMoresTimePay(orderID){
+    this._execPay(orderID)
   },
 
   /**
@@ -152,12 +181,12 @@ Page({
         //将已经下单的商品从购物车删除
         _this.deleteProducts()
 
-        var flag = statusCode == 2;
+        var flag = statusCode == 2
         wx.navigateTo({
           url: '../pay-result/pay-result?id=' + orderID + '&flag=' + flag + '&from=order'
-        });
+        })
       }
-    });
+    })
   },
 
   /**
