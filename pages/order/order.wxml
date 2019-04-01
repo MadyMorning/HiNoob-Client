@@ -50,14 +50,14 @@
         <view class="order-item-right">
           <text class="order-name">{{ item.name }}</text>
           <text class="order-price">¥{{ item.price }}</text>
-          <text class="order-counts">×{{ item.counts }}</text>
+          <text class="order-counts">×{{ item.count }}</text>
         </view>
       </view>
     </block>
   </view>
 
   <!-- 支付 -->
-  <view class="order-footer {{ basicInfo ? 'disabled' : '' }}">
+  <view class="order-footer {{ (basicInfo && orderStatus != 1) ? 'disabled' : '' }}">
     <view class="order-footer-left">
       <text class="">合计：¥{{ orderPrices }}</text>
     </view>

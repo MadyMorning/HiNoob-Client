@@ -48,8 +48,9 @@ class Base{
    * @param   {object}  params  请求参数
    */
   _refetch(params) {
-    token.getTokenFromServer()
-    this.request(params, false)
+    token.getTokenFromServer(() => {
+      this.request(params, false)
+    })
   }
 
   /**

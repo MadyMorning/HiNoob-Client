@@ -24,11 +24,11 @@ class CartModel extends Base{
     
     // 若购物车中没有该条数据，则增加一条数据
     if (!isProductInfo) {
-      item.counts = counts  //数量
+      item.count = counts  //数量
       item.status = true    //是否选中
       cartData.push(item)
     } else {  //若购物车中存在该条数据，则将数量增加
-      cartData[isProductInfo.index].counts += counts
+      cartData[isProductInfo.index].count += counts
     }
     // 添加到小程序缓存
     wx.setStorageSync(this._storagekey, cartData)
@@ -87,16 +87,16 @@ class CartModel extends Base{
    * @return  {object}        返回商品数量和价格
    */
   getCountsAndPrice(data, flag = false) {
-    let countsAndprice = { counts: 0, price: 0 }
+    let countsAndprice = { count: 0, price: 0 }
     for (const value of data) {
       if (flag) {
         if (value.status) {
-          countsAndprice.counts += value.counts
-          countsAndprice.price += value.counts * parseFloat(value.price) * 100
+          countsAndprice.count += value.count
+          countsAndprice.price += value.count * parseFloat(value.price) * 100
         }
       } else {
-        countsAndprice.counts += value.counts
-        countsAndprice.price += value.counts * parseFloat(value.price) * 100
+        countsAndprice.count += value.count
+        countsAndprice.price += value.count * parseFloat(value.price) * 100
       }
     }
     if (countsAndprice.price == 0) {

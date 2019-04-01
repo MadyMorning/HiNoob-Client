@@ -87,7 +87,7 @@ Page({
    */
   getCartCounts() {
     let cartData = cartModel.getCartDataFromLocal()
-    let quantity = (cartModel.getCountsAndPrice(cartData)).counts
+    let quantity = (cartModel.getCountsAndPrice(cartData)).count
     this.setData({
       quantity
     })

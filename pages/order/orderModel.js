@@ -24,9 +24,6 @@ class OrderModle extends Base{
       callback(res) {
         wx.setStorageSync(_this._storagekey, true)
         callback && callback(res)
-        // if (res.status) {
-        //   _this.execPay(res.orderID)
-        // }
       }
     }
 
@@ -71,10 +68,6 @@ class OrderModle extends Base{
     this.request(params);
   }
 
-  oneMoresTimePay() {
-    
-  }
-
   /**
    * 从支付结果页返回，获取已生成的订单信息
    *
@@ -88,6 +81,44 @@ class OrderModle extends Base{
     }
 
     this.request(params)
+  }
+
+  /**
+   * 获取历史订单
+   *
+   * @param   {Number}  page      起始页，默认第 1 页
+   * @param   {Number}  size      每页条数，默认 10 条
+   * @param   {object}  callback  回调函数
+   */
+  getHistoryOrders(callback, page = '', size = '') {
+    let url = ''
+    if (page == '' && size == '') {
+      url = 'v1/order/history_all'
+    } else {
+      url = 'v1/order/history?page=' + page + '&size=' + size
+    }
+
+    let params = {
+      url,
+      callback
+    }
+
+    this.request(params)
+  }
+
+  /**
+   * 本地缓存 保存／更新
+   */
+  execSetStorageSync(data) {
+    wx.setStorageSync(this._storagekey, data)
+  }
+
+  /**
+   * 是否有新的订单
+   */
+  hasNewOrder() {
+    var flag = wx.getStorageSync(this._storagekey)
+    return flag == true;
   }
 }
 
